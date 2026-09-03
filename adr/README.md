@@ -15,3 +15,4 @@ Decisions for the Interlock app, made during build planning (epic: [#16](https:/
 | [0009](0009-resize-edge-grow-then-repeat-unit.md) | 2026-09-02 | Accepted | Edge grow/shrink resize first; repeat-unit resize later |
 | [0010](0010-faithful-to-design-shell-nocturne.md) | 2026-09-02 | Accepted | Follow the design shell faithfully; reuse nocturne.css |
 | [0011](0011-pure-engine-ui-boundary.md) | 2026-09-02 | Accepted | Pure TypeScript engine, hard boundary from UI |
+| [0012](0012-hash-route-grammar.md) | 2026-09-03 | Accepted | Hash route grammar `#/<screen>[/<detail>]`, output tab in the URL |

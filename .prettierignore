@@ -1,0 +1,12 @@
+dist/
+coverage/
+node_modules/
+package-lock.json
+
+# Reference material is a verbatim copy of the design/spec handoff.
+ref/
+src/styles/nocturne.css
+
+# Markdown (ADRs, README) is hand-authored prose; Prettier's table padding
+# churns records that are meant to stay stable.
+*.md
