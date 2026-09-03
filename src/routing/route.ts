@@ -8,9 +8,9 @@
  * `output`, and the only detail segment is the output tab. M10's share links
  * take a third screen under the same grammar (`#/s/1.<payload>`, ADR 0004).
  *
- * Nothing else is encoded in the fragment. Anything unrecognized falls back to
- * the design screen rather than rendering blank, so a truncated or
- * not-yet-implemented link still lands somewhere usable.
+ * Nothing else is encoded in the fragment. An unrecognized screen (or empty fragment) falls back
+ * to the design screen rather than rendering blank. On the output screen, an unrecognized tab
+ * falls back to the default tab (Instructions), so truncated or not-yet-implemented links still land somewhere usable.
  */
 
 export const SCREENS = ['design', 'output'] as const;
