@@ -1,0 +1,266 @@
+/* App-level styles layered on top of nocturne.css. Nocturne is the source of
+   truth for tokens and component classes (ADR 0010); nothing here redefines a
+   token, it only composes them into this app's chrome. */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+.app-root {
+  display: flex;
+  height: 100%;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  overflow: hidden;
+}
+
+/* Mobile-first: the root stacks so the tab bar sits at the bottom. Past the
+   900 px breakpoint it becomes a row and the sidebar takes the left edge. */
+.app-root {
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-divider);
+  flex: none;
+}
+
+.app-header-title {
+  flex: 1 1 140px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header-title h1 {
+  font-size: 18px;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-header-status {
+  font-size: 11px;
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+}
+
+/* — bottom tab bar (mobile) — */
+.app-tabbar {
+  display: flex;
+  flex: none;
+  border-top: 1px solid var(--color-divider);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.app-tabbar button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.app-tabbar button span {
+  font-size: 11px;
+}
+
+/* — sidebar (desktop) — */
+.app-sidebar {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  width: 72px;
+  flex: none;
+  padding: 16px 0;
+  gap: 28px;
+  border-right: 1px solid var(--color-divider);
+}
+
+.app-sidebar button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: color-mix(in srgb, var(--color-text) 65%, transparent);
+}
+
+.app-sidebar button span {
+  font-size: 10px;
+}
+
+.app-brand {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-size: 13px;
+  color: var(--color-accent);
+}
+
+.app-sidebar button.app-nav-current,
+.app-tabbar button.app-nav-current {
+  color: var(--color-accent);
+}
+
+/* — output tabs — */
+.output-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 10px 16px 0;
+  border-bottom: 1px solid var(--color-divider);
+  flex: none;
+}
+
+.output-tabs button {
+  padding: 8px 12px 10px;
+  font-size: 13px;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  flex: none;
+}
+
+.output-tabs button[aria-selected='true'] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+.app-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 20px;
+}
+
+/* — placeholder containers —
+   Spec §11.9: the shell ships correctly-sized, clearly-marked placeholder
+   containers so the real shared renderer drops into both the editor and the
+   output tabs without reworking the surrounding layout. */
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  border: 2px dashed var(--color-divider);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: color-mix(in srgb, var(--color-text) 45%, transparent);
+  font-size: 13px;
+}
+
+.placeholder-square {
+  width: min(100%, 560px);
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+
+.placeholder-row {
+  width: 100%;
+  aspect-ratio: 3 / 1;
+}
+
+/* The mobile palette is a short strip, not a proportional box — it wraps to
+   more rows rather than clipping (design handoff, Design screen). */
+.placeholder-strip {
+  width: 100%;
+  height: 136px;
+}
+
+.placeholder-canvas {
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  margin: 20px;
+}
+
+.design-area {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.design-palette {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 100%;
+  padding: 12px;
+  border-top: 1px solid var(--color-divider);
+}
+
+.stack-narrow {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .app-root {
+    flex-direction: row;
+  }
+
+  .app-tabbar {
+    display: none;
+  }
+
+  .app-sidebar {
+    display: flex;
+  }
+
+  .design-area {
+    flex-direction: row;
+  }
+
+  .design-palette {
+    width: 220px;
+    border-top: none;
+    border-left: 1px solid var(--color-divider);
+  }
+}
