@@ -18,7 +18,7 @@ The output tab is that detail segment for the output screen: `#/output/wireframe
 
 Nothing else goes in the fragment: no query string, no per-tab state such as the per-row chart's current row.
 
-Parsing never throws and never renders blank. An unrecognized screen, an unrecognized detail segment, or an empty fragment all fall back to the design screen.
+Parsing never throws and never renders blank. An unrecognized screen or empty fragment falls back to the design screen; on the output screen, an unrecognized detail segment falls back to the default tab (Instructions).
 
 ## Alternatives considered
 
